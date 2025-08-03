@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>미래소프트 홈페이지</title>
+    <!-- Tailwind CSS CDN을 사용하여 현대적이고 반응형 디자인을 적용합니다. -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* 스크롤 시 헤더가 배경색을 가지도록 CSS를 추가합니다. */
+        .header-bg {
+            background-color: white;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- 언어 전환 로직을 위한 JavaScript -->
+    <script>
+        const content = {
+            ko: {
+                companyName: "미래소프트",
+                menu1: "회사 소개",
+                menu2: "제품",
+                menu3: "게시판",
+                footerCompanyNo: "개인사업자 번호: 123-45-67890",
+                footerEmail: "이메일: contact@example.com",
+                footerCopyright: "Copyright © 2024 미래소프트. All Rights Reserved."
+            },
+            en: {
+                companyName: "MiraiSoft",
+                menu1: "About Company",
+                menu2: "Product",
+                menu3: "Notice",
+                footerCompanyNo: "Company No: 123-45-67890",
+                footerEmail: "Email: contact@example.com",
+                footerCopyright: "Copyright © 2024 MiraiSoft. All Rights Reserved."
+            }
+        };
+
+        function setLanguage(lang) {
+            document.querySelectorAll('[data-lang]').forEach(el => {
+                const key = el.getAttribute('data-lang');
+                el.textContent = content[lang][key];
+            });
+            document.documentElement.lang = lang;
+            document.getElementById('lang-toggle').textContent = lang === 'ko' ? 'EN' : 'KO';
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            setLanguage('ko'); // 초기 언어 설정
+        });
+    </script>
+
+    <!-- 상단 메뉴 (Header) -->
+    <header id="main-header" class="fixed top-0 left-0 w-full z-50 transition-all duration-300">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center bg-white shadow-md rounded-b-xl">
+            <img src="logo_1.jpg" style="height:60px;"/>
+            <!-- 회사 로고 및 이름 -->
+            <a href="#" class="text-2xl font-bold text-blue-600 rounded-lg p-2 hover:bg-gray-100 transition-colors" style="margin-left: -200px;">
+                <span data-lang="companyName">미래소프트</span>
+            </a>
+            <!-- 내비게이션 메뉴 -->
+            <nav class="hidden md:flex items-center space-x-6">
+                <a href="#about" class="text-gray-600 font-medium hover:text-blue-600 transition-colors" data-lang="menu1">회사 소개</a>
+                <a href="#product" class="text-gray-600 font-medium hover:text-blue-600 transition-colors" data-lang="menu2">제품</a>
+                <a href="#notice" class="text-gray-600 font-medium hover:text-blue-600 transition-colors" data-lang="menu3">게시판</a>
+            </nav>
+            <!-- 언어 전환 버튼 -->
+            <button id="lang-toggle" onclick="setLanguage(document.documentElement.lang === 'ko' ? 'en' : 'ko')" 
+                    class="ml-4 py-2 px-4 border border-gray-300 rounded-full font-bold text-gray-600 hover:bg-gray-100 transition-colors">
+                EN
+            </button>
+        </div>
+    </header>
+    
+    <!-- 모바일용 햄버거 메뉴 (숨겨져 있음) -->
+    <div class="fixed top-4 right-4 md:hidden z-50">
+        <button class="text-gray-600 hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-md p-2">
+            <!-- SVG 햄버거 아이콘 -->
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        </button>
+    </div>
+
+    <!-- 메인 콘텐츠 영역 -->
+    <main class="pt-24 pb-12">
+
+        <!-- 메인 페이지 섹션 (예시) -->
+        <section class="bg-blue-600 text-white py-24 rounded-b-3xl">
+            <div class="container mx-auto px-4 text-center">
+                <h1 class="text-4xl md:text-6xl font-bold mb-4">
+                    <span data-lang="companyName">미래소프트</span>
+                </h1>
+                <p class="text-lg md:text-xl max-w-2xl mx-auto mb-8">
+                    <span data-lang="companyName">미래소프트</span>의 비전과 가치를 담은 혁신적인 제품들을 만나보세요.
+                </p>
+                <a href="#product" class="bg-white text-blue-600 font-bold py-3 px-8 rounded-full shadow-lg hover:bg-gray-100 transition-colors">
+                    <span data-lang="menu2">제품</span> 보러가기
+                </a>
+            </div>
+        </section>
+
+        <!-- 회사 소개 섹션 -->
+        <section id="about" class="container mx-auto px-4 py-20 bg-white rounded-xl shadow-md mt-12">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 text-blue-600" data-lang="menu1">회사 소개</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-xl font-semibold mb-2">우리의 비전</h3>
+                    <p class="text-gray-600">
+                        우리는 고객의 삶을 더 풍요롭게 만드는 혁신적인 기술과 서비스를 제공합니다. 창의성과 열정으로 미래를 개척해 나갑니다.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-2">우리의 도전</h3>
+                    <p class="text-gray-600">
+                        모두가 더 나은 내일을 꿈꿀 수 있도록 지속 가능한 가치를 창출하는 글로벌 기업이 되겠습니다.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 제품 섹션 -->
+        <section id="product" class="container mx-auto px-4 py-20 mt-12">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 text-blue-600" data-lang="menu2">제품</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- 제품 카드 1 -->
+                <div class="bg-white rounded-xl shadow-md p-6 hover:shadow-xl transition-shadow">
+                    <div class="h-48 bg-gray-200 rounded-lg mb-4">
+                        <img src="book_spine_personal.jpg" alt="개인형 책등 AI 서비스" class="w-full h-full object-cover rounded-lg" />
+                    </div> <!-- Placeholder Image -->
+                    <h3 class="text-xl font-semibold mb-2">개인형 책등 AI 서비스</h3>
+                    <p class="text-gray-600">
+                        서재에 있는 책을 AI를 통해 효과적으로 관리하는 서비스입니다.
+                    </p>
+                </div>
+                <!-- 제품 카드 2 -->
+                <div class="bg-white rounded-xl shadow-md p-6 hover:shadow-xl transition-shadow">
+                    <div class="h-48 bg-gray-200 rounded-lg mb-4">
+                        <img src="book_spine_org.jpg" alt="개인형 책등 AI 서비스" class="w-full h-full object-cover rounded-lg" />
+                    </div> <!-- Placeholder Image -->
+                    <h3 class="text-xl font-semibold mb-2">기업형 책등 AI서비스</h3>
+                    <p class="text-gray-600">
+                        방대한 양의 책을 AI를 통해 효율적으로 관리하는 기업형 서비스입니다.
+                    </p>
+                </div>
+                <!-- 제품 카드 3 -->
+                <div class="bg-white rounded-xl shadow-md p-6 hover:shadow-xl transition-shadow">
+                    <div class="h-48 bg-gray-200 rounded-lg mb-4">
+                        <img src="data_back_test.jpg" alt="개인형 책등 AI 서비스" class="w-full h-full object-cover rounded-lg" />
+                    </div> <!-- Placeholder Image -->
+                    <h3 class="text-xl font-semibold mb-2">백테스트 서비스</h3>
+                    <p class="text-gray-600">
+                        AI를 이용한 테이터 백테스트를 통해 경험을 축적하고 미래의 예측 데이터의 정확도를 높여줍니다.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 게시판 섹션 -->
+        <section id="notice" class="container mx-auto px-4 py-20 bg-white rounded-xl shadow-md mt-12">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 text-blue-600" data-lang="menu3">게시판</h2>
+            <ul class="space-y-4">
+                <li class="border-b pb-4">
+                    <a href="#" class="text-lg font-medium text-gray-800 hover:text-blue-600 transition-colors">
+                        2025년 하반기 개인형 책등 서비스 오픈 예정
+                    </a>
+                    <p class="text-sm text-gray-500 mt-1">2025.8.01</p>
+                </li>
+                <li class="border-b pb-4">
+                    <a href="#" class="text-lg font-medium text-gray-800 hover:text-blue-600 transition-colors">
+                        2026년 상반기 백테스트 서비스 오픈 예정
+                    </a>
+                    <p class="text-sm text-gray-500 mt-1">2025.8.01</p>
+                </li>
+                <li class="pb-4">
+                    <a href="#" class="text-lg font-medium text-gray-800 hover:text-blue-600 transition-colors">
+                        2025년 하반기 기업형 책등 서비스 오픈 예정
+                    </a>
+                    <p class="text-sm text-gray-500 mt-1">2025.8.01</p>
+                </li>
+            </ul>
+        </section>
+
+    </main>
+
+    <!-- 푸터 -->
+    <footer class="bg-gray-900 text-white py-12 mt-12">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-sm mb-1" data-lang="footerCompanyNo">개인사업자 번호: 123-45-67890</p>
+            <p class="text-sm mb-1" data-lang="footerEmail">이메일: contact@example.com</p>
+            <p class="text-sm" data-lang="footerCopyright">Copyright © 2024 미래소프트. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- 스크롤 이벤트 핸들러 -->
+    <script>
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('main-header');
+            if (window.scrollY > 50) {
+                header.classList.add('header-bg');
+            } else {
+                header.classList.remove('header-bg');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>미래소프트 (MiraiSoft)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        .header {
+            background: white;
+            border-bottom: 2px solid #e9ecef;
+            padding: 20px 0;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #333;
+        }
+        
+        .logo-m {
+            font-size: 28px;
+            font-weight: bold;
+            background: linear-gradient(45deg, #dc2626, #1e3a8a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .nav {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav a:hover {
+            color: #dc2626;
+        }
+        
+        /* Main Content */
+        .main-content {
+            background: white;
+            margin: 0;
+            padding: 40px 0;
+        }
+        
+        .section {
+            margin-bottom: 60px;
+        }
+        
+        .section-title {
+            font-size: 32px;
+            color: #2563eb;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+        
+        /* 회사소개 섹션 */
+        .company-intro {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 40px;
+        }
+        
+        .intro-block h3 {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .intro-block p {
+            color: #666;
+            line-height: 1.8;
+        }
+        
+        /* 제품 섹션 */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .product-card {
+            background: #f8f9fa;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+        
+        .product-image {
+            width: 100%;
+            height: 200px;
+            background: #e9ecef;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6c757d;
+            font-size: 18px;
+        }
+        
+        .product-info {
+            padding: 20px;
+        }
+        
+        .product-info h4 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .product-info p {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        /* 게시판 섹션 */
+        .news-list {
+            background: white;
+        }
+        
+        .news-item {
+            padding: 15px 0;
+            border-bottom: 1px solid #e9ecef;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .news-item:last-child {
+            border-bottom: none;
+        }
+        
+        .news-title {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .news-title:hover {
+            color: #2563eb;
+        }
+        
+        .news-date {
+            color: #999;
+            font-size: 14px;
+        }
+        
+        /* Footer */
+        .footer {
+            background: #f8f9fa;
+            border-top: 1px solid #e9ecef;
+            padding: 40px 0 20px;
+            margin-top: 60px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .footer-logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .footer-nav {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .footer-nav a {
+            color: #666;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-nav a:hover {
+            color: #333;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #e9ecef;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        /* 반응형 */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .nav {
+                gap: 20px;
+            }
+            
+            .company-intro {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+            
+            .footer-nav {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .news-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <span class="logo-m">M</span>
+                    </div>
+                    미래소프트 (MiraiSoft)
+                </div>
+                <nav class="nav">
+                    <a href="#company">회사소개</a>
+                    <a href="#products">제품</a>
+                    <a href="#news">게시판</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- 회사소개 섹션 -->
+            <section id="company" class="section">
+                <h2 class="section-title">회사 소개</h2>
+                <div class="company-intro">
+                    <div class="intro-block">
+                        <h3>우리의 미션</h3>
+                        <p>우리는 고객의 성공을 돕 중요하게 만드는 혁신적인 기술과 서비스를 제공합니다. 창의성과 열정으로 미래를 개척해 나갑니다.</p>
+                    </div>
+                    <div class="intro-block">
+                        <h3>우리의 비전</h3>
+                        <p>모두가 더 나은 내일을 꿈꿀 수 있도록 지속 가능한 가치를 창출하는 글로벌 리더가 되겠습니다.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 제품 섹션 -->
+            <section id="products" class="section">
+                <h2 class="section-title">제품</h2>
+                <div class="products-grid">
+                    <div class="product-card">
+                        <div class="product-image">
+							<img src="book_spin_personal.jpg" class="ndfHFb-c4YZDc-HiaYvf-RJLb9c" alt="책등_for_org.JPG 표시 중" aria-hidden="true">						
+						</div>
+                        <div class="product-info">
+                            <h4>개인형 AI 서재 관리</h4>
+                            <p>지식은 책에서 시작됩니다. 그리고 AI가 함께합니다.</p>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-image">
+							<img src="book_spin_personal_360.png" class="ndfHFb-c4YZDc-HiaYvf-RJLb9c" alt="책등_for_org.JPG 표시 중" aria-hidden="true">						
+                        </div>
+                        <div class="product-info">
+                            <h4>도서관 AI 서재 관리</h4>
+                            <p>AI 기술을 활용한 스마트한 도서관리 서비스로 편리함을 더합니다.</p>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="backtest.jpg" class="ndfHFb-c4YZDc-HiaYvf-RJLb9c" alt="책등_for_org.JPG 표시 중" aria-hidden="true">
+                        </div>
+                        <div class="product-info">
+                            <h4>AI 백테스트 솔루션</h4>
+                            <p>백테스트 기반 AI 솔루션으로, 데이터 분석과 예측을 통해 최적의 투자 전략을 제시합니다.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 게시판 섹션 -->
+            <section id="news" class="section">
+                <h2 class="section-title">게시판</h2>
+                <div class="news-list">
+                    <div class="news-item">
+                        <a href="#" class="news-title">2024년 하반기 업데이트 예정 공지</a>
+                        <span class="news-date">2024.10.27</span>
+                    </div>
+                    <div class="news-item">
+                        <a href="#" class="news-title">신규 서비스 런칭 기념 이벤트 안내</a>
+                        <span class="news-date">2024.10.20</span>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">미래소스프</div>
+                <nav class="footer-nav">
+                    <a href="#home">홈</a>
+                    <a href="#portfolio">포트폴리오</a>
+                    <a href="#service">서비스</a>
+                    <a href="#blog">블로그</a>
+                    <a href="#contact">연락처</a>
+                </nav>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2024 미래소프트 | 개인사업자 등록번호: 695-02-03298 | 연락처: hajenet@gmail.com | 개인정보처리방침
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
